@@ -18,7 +18,7 @@ function find() {
 }
 
 function findById(id) {
-  return db('posts').where({ id: Number(id) });
+  return db('posts').first().where({ id: Number(id) });
 }
 
 function insert(post) {
@@ -50,6 +50,7 @@ function findCommentById(id) {
   return db('comments')
     .join('posts', 'posts.id', 'post_id')
     .select('comments.*', 'title as post')
+    .first()
     .where('comments.id', id);
 }
 
